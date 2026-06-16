@@ -2,7 +2,7 @@
 import { ref, nextTick } from 'vue'
 import { useLLM } from '../composables/useLLM'
 
-const { run } = useLLM()
+const { run, isReal } = useLLM()
 const messages = ref([
   { role: 'assistant', content: 'Hola, soy el asistente de la demo. Preguntame lo que quieras.' }
 ])
@@ -42,6 +42,11 @@ async function scrollDown() {
 
 <template>
   <div class="space-y-3">
+    <p v-if="!isReal" class="rounded-md border border-edge bg-ink/50 px-3 py-2 text-xs text-mist">
+      Modo simulado: las respuestas son de muestra generadas offline. Activa
+      <span class="text-cloud">API real</span> con tu key para una conversacion real con el LLM.
+    </p>
+
     <div
       ref="scroller"
       class="h-64 space-y-3 overflow-y-auto rounded-md border border-edge bg-ink p-4"

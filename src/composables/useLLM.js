@@ -52,15 +52,77 @@ export function useLLM() {
     }
 
     if (task === 'chat') {
-      const reply =
-        'Entiendo tu consulta sobre "' + (text.slice(0, 60) || 'tu mensaje') + '". ' +
-        (words > 12
-          ? 'Es un tema con varias aristas; te lo separo en partes para que sea claro y accionable.'
-          : 'Te doy una respuesta directa y, si necesitas, profundizamos.')
-      return Promise.resolve({ content: reply })
+      return Promise.resolve({ content: simulateChat(text, words) })
     }
 
     return Promise.resolve({ content: 'Tarea no reconocida.' })
+  }
+
+  // ── Motor de chat simulado: varia la respuesta segun el tipo de mensaje ────
+  function simulateChat(text, words) {
+    const lower = text.toLowerCase()
+    const has = function (list) {
+      return list.some(function (w) { return lower.indexOf(w) !== -1 })
+    }
+    const pick = function (list) {
+      return list[Math.floor(Math.random() * list.length)]
+    }
+
+    if (!text) {
+      return 'Escribi tu consulta y te respondo. Recorda que en modo Simulado las respuestas son de muestra; activa "API real" con tu key para una conversacion real.'
+    }
+
+    // Saludo
+    if (has(['hola', 'buenas', 'buen dia', 'que tal', 'hello', 'hi'])) {
+      return pick([
+        'Hola, como va. Contame en que estas trabajando y vemos como encararlo.',
+        'Buenas. Decime que necesitas y arrancamos.',
+        'Hola. Estoy en modo demo, pero igual te puedo orientar. Que tema te interesa?'
+      ])
+    }
+
+    // Despedida
+    if (has(['gracias', 'chau', 'adios', 'nos vemos', 'listo'])) {
+      return pick([
+        'De nada, cualquier cosa volve a escribir.',
+        'Genial. Si necesitas algo mas, aca estoy.',
+        'Listo entonces. Suerte con el proyecto.'
+      ])
+    }
+
+    // Pregunta directa
+    if (lower.indexOf('?') !== -1 || has(['como', 'que es', 'por que', 'cuando', 'donde', 'cual'])) {
+      return pick([
+        'Buena pregunta. La respuesta corta es que depende del contexto; si me das un poco mas de detalle, afino la explicacion.',
+        'Para responder bien eso necesitaria un par de datos mas, pero la idea general es empezar por lo mas simple y sumar complejidad solo si hace falta.',
+        'Te lo planteo asi: primero el caso tipico, despues las excepciones. Decime cual de los dos te interesa y profundizo.'
+      ])
+    }
+
+    // Pedido de ayuda / accion
+    if (has(['ayuda', 'necesito', 'podes', 'puedes', 'quiero', 'ayudame', 'hace', 'genera', 'crea'])) {
+      return pick([
+        'Dale, puedo ayudarte con eso. Contame el objetivo concreto y las restricciones que tengas.',
+        'Lo vemos. Para darte algo util necesito saber que resultado esperas y con que estas trabajando.',
+        'Perfecto. Separemoslo en pasos: primero definamos el que, despues el como.'
+      ])
+    }
+
+    // Mensaje largo / tecnico
+    if (words > 15) {
+      return pick([
+        'Es un tema con varias aristas. Lo desarmo en partes para que quede claro y accionable.',
+        'Hay bastante para analizar ahi. Te propongo ir por lo mas importante primero y despues los detalles.',
+        'Entiendo el planteo. Antes de avanzar, confirmame cual es la prioridad asi enfoco la respuesta.'
+      ])
+    }
+
+    // Default variado
+    return pick([
+      'Entiendo. Contame un poco mas y vemos como seguir.',
+      'Dale. Sumame algun detalle y armo una respuesta mas concreta.',
+      'Te sigo. Si me das contexto, afino la respuesta a tu caso.'
+    ])
   }
 
   // ── Llamada real a la API de Anthropic ────────────────────────────────────
