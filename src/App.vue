@@ -18,7 +18,6 @@ const portfolioUrl = 'https://lgpicek.github.io'
 
 <template>
   <div class="min-h-screen">
-    <!-- Header -->
     <header class="border-b border-edge">
       <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
         <div class="flex items-center gap-3">
@@ -40,7 +39,6 @@ const portfolioUrl = 'https://lgpicek.github.io'
     </header>
 
     <main class="mx-auto max-w-4xl space-y-6 px-6 py-8">
-      <!-- Intro -->
       <section>
         <h2 class="text-2xl font-bold text-cloud">Tres herramientas de IA en una SPA</h2>
         <p class="mt-2 max-w-2xl text-sm leading-relaxed text-mist">
@@ -54,7 +52,6 @@ const portfolioUrl = 'https://lgpicek.github.io'
 
       <ModeBar />
 
-      <!-- Tabs -->
       <nav class="flex flex-wrap gap-2 border-b border-edge">
         <button
           v-for="t in tabs"
@@ -70,7 +67,6 @@ const portfolioUrl = 'https://lgpicek.github.io'
         </button>
       </nav>
 
-      <!-- Panel -->
       <section class="rounded-lg border border-edge bg-panel p-5">
         <p class="mb-4 text-xs uppercase tracking-widest text-mist">
           {{ tabs.find(function (t) { return t.id === active }).desc }}
