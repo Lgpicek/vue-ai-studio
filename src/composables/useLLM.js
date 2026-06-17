@@ -125,6 +125,25 @@ export function useLLM() {
     ])
   }
 
+  // ── Traduce errores crudos de la API a mensajes claros para el usuario ─────
+  function friendlyError(status, detail) {
+    var lower = (detail || '').toLowerCase()
+
+    if (lower.indexOf('credit balance') !== -1 || lower.indexOf('too low') !== -1) {
+      return 'Esta cuenta de Anthropic no tiene saldo de API. Podes usar el modo Simulado (no requiere key ni costo) o cargar credito en tu cuenta. Este error es de facturacion, no de la demo.'
+    }
+    if (status === 401 || lower.indexOf('authentication') !== -1 || lower.indexOf('invalid x-api-key') !== -1) {
+      return 'La API key no es valida. Revisa que la hayas copiado completa (empieza con sk-ant-) o usa el modo Simulado.'
+    }
+    if (status === 429) {
+      return 'Se alcanzo el limite de uso de la API por el momento. Espera unos segundos y reintenta, o usa el modo Simulado.'
+    }
+    if (status >= 500) {
+      return 'El proveedor de IA esta teniendo problemas temporales. Proba de nuevo en un momento o usa el modo Simulado.'
+    }
+    return 'No se pudo completar la solicitud (codigo ' + status + '). Podes usar el modo Simulado mientras tanto.'
+  }
+
   // ── Llamada real a la API de Anthropic ────────────────────────────────────
   // La key la pone el usuario en un input y NUNCA se hardcodea ni se versiona.
   async function callReal(task, input, history) {
@@ -160,7 +179,7 @@ export function useLLM() {
 
     if (!res.ok) {
       const detail = await res.text()
-      throw new Error('La API respondio ' + res.status + '. ' + detail.slice(0, 200))
+      throw new Error(friendlyError(res.status, detail))
     }
 
     const data = await res.json()

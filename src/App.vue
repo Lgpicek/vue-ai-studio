@@ -30,7 +30,7 @@ const portfolioUrl = 'https://lgpicek.github.io'
             <p class="text-xs text-mist">Vue 3 · Composition API · Tailwind · LLM</p>
           </div>
         </div>
-        <a
+        
           :href="portfolioUrl"
           class="rounded-md border border-edge px-3 py-1.5 text-xs text-mist transition hover:border-signal hover:text-cloud"
         >
@@ -44,10 +44,11 @@ const portfolioUrl = 'https://lgpicek.github.io'
       <section>
         <h2 class="text-2xl font-bold text-cloud">Tres herramientas de IA en una SPA</h2>
         <p class="mt-2 max-w-2xl text-sm leading-relaxed text-mist">
-          Demo construida con Vue 3 y Composition API. Cada herramienta funciona en modo
-          <span class="text-cloud">simulado</span> (motor offline, sin API key) o
-          <span class="text-cloud">real</span> (conexion directa a la API de Anthropic con tu
-          propia key). El toggle de abajo cambia el motor de las tres.
+          Demo construida con Vue 3 y Composition API. Funciona por defecto en modo
+          <span class="text-cloud">simulado</span>: un motor offline que corre sin API key
+          ni costo, ideal para probar toda la interfaz. Tambien incluye un modo
+          <span class="text-cloud">API real</span> opcional que se conecta a un LLM con tu
+          propia key, para mostrar la integracion en vivo. El toggle de abajo cambia el motor.
         </p>
       </section>
 

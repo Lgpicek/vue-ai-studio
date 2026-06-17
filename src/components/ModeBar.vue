@@ -45,6 +45,11 @@ const { mode, apiKey, isReal, lastLatency, setMode } = useLLM()
           placeholder="sk-ant-..."
           class="w-full rounded-md border border-edge bg-ink px-3 py-2 font-mono text-sm text-cloud placeholder:text-mist/50 focus:border-signal focus:outline-none"
         />
+        <p class="mt-2 text-xs text-mist">
+          Modo opcional para ver la integracion en vivo. Requiere una key de Anthropic con
+          saldo. Si no tenes una, el modo <span class="text-cloud">Simulado</span> muestra
+          toda la demo sin costo.
+        </p>
       </div>
     </Transition>
   </div>
