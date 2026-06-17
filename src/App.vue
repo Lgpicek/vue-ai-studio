@@ -12,32 +12,35 @@ const tabs = [
 ]
 const active = ref('classify')
 
+// Cambia esta URL por la de tu portfolio
 const portfolioUrl = 'https://lgpicek.github.io'
 </script>
 
 <template>
   <div class="min-h-screen">
+    <!-- Header -->
     <header class="border-b border-edge">
       <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
         <div class="flex items-center gap-3">
-          <div class="flex h-9 w-9 items-center justify-center rounded-md bg-signal text-lg font-bold text-white">
-            AI
+          <div class="flex h-9 w-9 items-center justify-center rounded-md bg-signal font-mono text-lg font-bold text-white">
+            &lt;/&gt;
           </div>
           <div>
             <h1 class="font-mono text-sm font-bold text-cloud">Vue AI Studio</h1>
             <p class="text-xs text-mist">Vue 3 · Composition API · Tailwind · LLM</p>
           </div>
         </div>
-        
+        <a
           :href="portfolioUrl"
           class="rounded-md border border-edge px-3 py-1.5 text-xs text-mist transition hover:border-signal hover:text-cloud"
         >
-          Volver al portfolio
+          ← Volver al portfolio
         </a>
       </div>
     </header>
 
     <main class="mx-auto max-w-4xl space-y-6 px-6 py-8">
+      <!-- Intro -->
       <section>
         <h2 class="text-2xl font-bold text-cloud">Tres herramientas de IA en una SPA</h2>
         <p class="mt-2 max-w-2xl text-sm leading-relaxed text-mist">
@@ -51,6 +54,7 @@ const portfolioUrl = 'https://lgpicek.github.io'
 
       <ModeBar />
 
+      <!-- Tabs -->
       <nav class="flex flex-wrap gap-2 border-b border-edge">
         <button
           v-for="t in tabs"
@@ -66,6 +70,7 @@ const portfolioUrl = 'https://lgpicek.github.io'
         </button>
       </nav>
 
+      <!-- Panel -->
       <section class="rounded-lg border border-edge bg-panel p-5">
         <p class="mb-4 text-xs uppercase tracking-widest text-mist">
           {{ tabs.find(function (t) { return t.id === active }).desc }}
