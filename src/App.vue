@@ -12,7 +12,6 @@ const tabs = [
 ]
 const active = ref('classify')
 
-// Cambia esta URL por la de tu portfolio
 const portfolioUrl = 'https://lgpicek.github.io'
 </script>
 
@@ -21,8 +20,8 @@ const portfolioUrl = 'https://lgpicek.github.io'
     <header class="border-b border-edge">
       <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
         <div class="flex items-center gap-3">
-          <div class="flex h-9 w-9 items-center justify-center rounded-md bg-signal font-mono text-lg font-bold text-white">
-            &lt;/&gt;
+          <div class="flex h-9 w-9 items-center justify-center rounded-md bg-signal text-lg font-bold text-white">
+            AI
           </div>
           <div>
             <h1 class="font-mono text-sm font-bold text-cloud">Vue AI Studio</h1>
@@ -33,7 +32,7 @@ const portfolioUrl = 'https://lgpicek.github.io'
           :href="portfolioUrl"
           class="rounded-md border border-edge px-3 py-1.5 text-xs text-mist transition hover:border-signal hover:text-cloud"
         >
-          ← Volver al portfolio
+          Volver al portfolio
         </a>
       </div>
     </header>
