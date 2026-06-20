@@ -18,13 +18,22 @@ const portfolioUrl = 'https://lgpicek.github.io'
 </script>
 
 <template>
+<<<<<<< HEAD
   <div class="min-h-screen bg-ink">
+=======
+  <div class="min-h-screen">
+>>>>>>> 44d3bdf831ca1fee3f9103da35764262f44affe4
     <!-- Header -->
     <header class="border-b border-edge">
       <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
         <div class="flex items-center gap-3">
+<<<<<<< HEAD
           <div class="flex h-9 w-9 items-center justify-center rounded-md bg-signaldim font-mono text-base font-bold text-ink">
             &#8983;
+=======
+          <div class="flex h-9 w-9 items-center justify-center rounded-md bg-signal font-mono text-lg font-bold text-white">
+            &lt;/&gt;
+>>>>>>> 44d3bdf831ca1fee3f9103da35764262f44affe4
           </div>
           <div>
             <h1 class="font-display text-base font-semibold tracking-tight text-cloud">Vue AI Studio</h1>
@@ -35,12 +44,20 @@ const portfolioUrl = 'https://lgpicek.github.io'
           :href="portfolioUrl"
           class="rounded-md border border-edge px-3 py-1.5 font-mono text-xs text-mist transition hover:border-signaldim hover:text-signal"
         >
+<<<<<<< HEAD
           &larr; portfolio
+=======
+          ← Volver al portfolio
+>>>>>>> 44d3bdf831ca1fee3f9103da35764262f44affe4
         </a>
       </div>
     </header>
 
+<<<<<<< HEAD
     <main class="mx-auto max-w-4xl space-y-7 px-6 py-10">
+=======
+    <main class="mx-auto max-w-4xl space-y-6 px-6 py-8">
+>>>>>>> 44d3bdf831ca1fee3f9103da35764262f44affe4
       <!-- Intro -->
       <section>
         <p class="font-mono text-xs uppercase tracking-[0.18em] text-signaldim">tres herramientas . un motor</p>
@@ -57,6 +74,7 @@ const portfolioUrl = 'https://lgpicek.github.io'
 
       <ModeBar />
 
+<<<<<<< HEAD
       <!-- Selector tipo terminal -->
       <div class="overflow-hidden rounded-lg border border-edge bg-panel">
         <div class="flex items-center gap-2 border-b border-edge bg-panel2 px-4 py-2">
@@ -102,6 +120,36 @@ const portfolioUrl = 'https://lgpicek.github.io'
         >
           codigo en github &rarr;
         </a>
+=======
+      <!-- Tabs -->
+      <nav class="flex flex-wrap gap-2 border-b border-edge">
+        <button
+          v-for="t in tabs"
+          :key="t.id"
+          type="button"
+          class="relative -mb-px border-b-2 px-4 py-2 text-sm font-medium transition"
+          :class="active === t.id
+            ? 'border-signal text-cloud'
+            : 'border-transparent text-mist hover:text-cloud'"
+          @click="active = t.id"
+        >
+          {{ t.label }}
+        </button>
+      </nav>
+
+      <!-- Panel -->
+      <section class="rounded-lg border border-edge bg-panel p-5">
+        <p class="mb-4 text-xs uppercase tracking-widest text-mist">
+          {{ tabs.find(function (t) { return t.id === active }).desc }}
+        </p>
+        <Classifier v-if="active === 'classify'" />
+        <Generator v-else-if="active === 'generate'" />
+        <Chat v-else-if="active === 'chat'" />
+      </section>
+
+      <footer class="pt-4 text-center text-xs text-mist">
+        Hecho con Vue 3 + Vite + Tailwind · codigo en GitHub
+>>>>>>> 44d3bdf831ca1fee3f9103da35764262f44affe4
       </footer>
     </main>
   </div>
