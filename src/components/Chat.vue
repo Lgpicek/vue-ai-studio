@@ -44,7 +44,7 @@ async function scrollDown() {
   <div class="space-y-3">
     <p v-if="!isReal" class="rounded-md border border-edge bg-ink/50 px-3 py-2 text-xs text-mist">
       Modo simulado: las respuestas son de muestra generadas offline. Activa
-      <span class="text-cloud">API real</span> con tu key para una conversacion real con el LLM.
+      <span class="text-signal">API real</span> con tu key para una conversacion real con el LLM.
     </p>
 
     <div
@@ -60,7 +60,7 @@ async function scrollDown() {
         <div
           class="max-w-[80%] rounded-lg px-3 py-2 text-sm"
           :class="m.role === 'user'
-            ? 'bg-signal text-white'
+            ? 'bg-signaldeep/25 text-signal border border-signaldim/30'
             : 'border border-edge bg-panel text-cloud'"
         >
           {{ m.content }}
@@ -69,9 +69,9 @@ async function scrollDown() {
       <div v-if="loading" class="flex justify-start">
         <div class="rounded-lg border border-edge bg-panel px-3 py-2 text-sm text-mist">
           <span class="inline-flex gap-1">
-            <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-mist" style="animation-delay: 0ms"></span>
-            <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-mist" style="animation-delay: 150ms"></span>
-            <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-mist" style="animation-delay: 300ms"></span>
+            <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-signaldim" style="animation-delay: 0ms"></span>
+            <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-signaldim" style="animation-delay: 150ms"></span>
+            <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-signaldim" style="animation-delay: 300ms"></span>
           </span>
         </div>
       </div>
@@ -85,17 +85,17 @@ async function scrollDown() {
       <input
         v-model="draft"
         type="text"
-        class="flex-1 rounded-md border border-edge bg-ink px-3 py-2 text-sm text-cloud focus:border-signal focus:outline-none"
+        class="flex-1 rounded-md border border-edge bg-ink px-3 py-2 font-mono text-sm text-cloud focus:border-signal focus:outline-none"
         placeholder="Escribi un mensaje..."
         @keyup.enter="send"
       />
       <button
         type="button"
         :disabled="loading"
-        class="rounded-md bg-signal px-4 py-2 text-sm font-medium text-white transition hover:bg-signaldim disabled:opacity-50"
+        class="rounded-md bg-signaldim px-4 py-2 font-mono text-sm font-medium text-ink transition hover:bg-signal disabled:opacity-50"
         @click="send"
       >
-        Enviar
+        enviar
       </button>
     </div>
   </div>

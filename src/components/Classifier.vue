@@ -23,13 +23,13 @@ async function analyze() {
 }
 
 const sentimentColor = {
-  positivo: 'text-ok',
+  positivo: 'text-signal',
   negativo: 'text-warn',
   neutral: 'text-mist'
 }
 const urgencyColor = {
-  alta: 'bg-warn/20 text-warn border-warn/40',
-  media: 'bg-signal/20 text-signal border-signal/40',
+  alta: 'bg-warn/15 text-warn border-warn/40',
+  media: 'bg-signaldeep/20 text-signal border-signaldim/40',
   baja: 'bg-edge text-mist border-edge'
 }
 </script>
@@ -39,17 +39,17 @@ const urgencyColor = {
     <textarea
       v-model="input"
       rows="3"
-      class="w-full resize-none rounded-md border border-edge bg-ink px-3 py-2 text-sm text-cloud focus:border-signal focus:outline-none"
+      class="w-full resize-none rounded-md border border-edge bg-ink px-3 py-2 font-mono text-sm text-cloud focus:border-signal focus:outline-none"
       placeholder="Pega un mensaje de soporte..."
     ></textarea>
 
     <button
       type="button"
       :disabled="loading"
-      class="rounded-md bg-signal px-4 py-2 text-sm font-medium text-white transition hover:bg-signaldim disabled:opacity-50"
+      class="rounded-md bg-signaldim px-4 py-2 font-mono text-sm font-medium text-ink transition hover:bg-signal disabled:opacity-50"
       @click="analyze"
     >
-      {{ loading ? 'Analizando...' : 'Analizar texto' }}
+      {{ loading ? 'analizando...' : 'analizar texto' }}
     </button>
 
     <p v-if="error" class="rounded-md border border-warn/40 bg-warn/10 px-3 py-2 text-sm text-warn">
@@ -58,13 +58,13 @@ const urgencyColor = {
 
     <div v-if="result" class="grid gap-3 sm:grid-cols-3">
       <div class="rounded-md border border-edge bg-ink p-3">
-        <p class="text-xs text-mist">Sentimiento</p>
+        <p class="font-mono text-[11px] uppercase tracking-wide text-mist">sentimiento</p>
         <p class="mt-1 text-lg font-semibold capitalize" :class="sentimentColor[result.sentiment]">
           {{ result.sentiment }}
         </p>
       </div>
       <div class="rounded-md border border-edge bg-ink p-3">
-        <p class="text-xs text-mist">Urgencia</p>
+        <p class="font-mono text-[11px] uppercase tracking-wide text-mist">urgencia</p>
         <span
           class="mt-1 inline-block rounded border px-2 py-0.5 text-sm font-medium capitalize"
           :class="urgencyColor[result.urgency]"
@@ -73,18 +73,18 @@ const urgencyColor = {
         </span>
       </div>
       <div class="rounded-md border border-edge bg-ink p-3">
-        <p class="text-xs text-mist">Confianza</p>
+        <p class="font-mono text-[11px] uppercase tracking-wide text-mist">confianza</p>
         <p class="mt-1 font-mono text-lg text-cloud">
           {{ Math.round(result.confidence * 100) }}%
         </p>
       </div>
       <div v-if="result.keywords && result.keywords.length" class="sm:col-span-3">
-        <p class="mb-1 text-xs text-mist">Palabras clave detectadas</p>
+        <p class="mb-1.5 font-mono text-[11px] uppercase tracking-wide text-mist">palabras clave detectadas</p>
         <div class="flex flex-wrap gap-2">
           <span
             v-for="kw in result.keywords"
             :key="kw"
-            class="rounded bg-edge px-2 py-0.5 font-mono text-xs text-cloud"
+            class="rounded bg-panel2 px-2 py-0.5 font-mono text-xs text-signal"
           >
             {{ kw }}
           </span>
