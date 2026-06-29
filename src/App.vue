@@ -95,7 +95,7 @@ const portfolioUrl = 'https://lgpicek.github.io'
       <footer class="flex flex-wrap items-center justify-between gap-2 pt-2 font-mono text-[11px] text-mist">
         <span>vue 3 . vite . tailwind</span>
         <a
-          href="https://github.com/lgpicek/vue-ai-studio"
+          href="https://github.com/Lgpicek/vue-ai-studio"
           target="_blank"
           rel="noopener"
           class="transition hover:text-signal"
